@@ -1,0 +1,75 @@
+<div class="absolute top-16 mt-12 w-full flex flex-col gap-6">
+  <div class="mx-14 flex">
+    <h1 class="font-semibold text-2xl w-5/6">All Records:</h1>
+    <button
+      (click)="onClickReload()"
+      class="rounded-lg p-2 text-md bg-white hover:bg-customBlue active:text-lg border border-black"
+    >
+      Reload
+    </button>
+  </div>
+
+  <div
+    *ngIf="allRecordsData$ | async as allRecordsData"
+    class="w-11/12 mx-auto grid grid-cols-[1fr,3fr,3fr,3fr,3fr,3fr,3fr,3fr] bg-customBlue"
+  >
+    <p class="py-4 px-6 my-auto font-semibold text-white">S.No</p>
+    <p class="py-4 px-6 my-auto font-semibold text-white">Name</p>
+    <p class="py-4 px-6 my-auto font-semibold text-white">Mobile</p>
+    <p class="py-4 px-6 my-auto font-semibold text-white">Date</p>
+    <p class="py-4 px-6 my-auto font-semibold text-white">No. of Tests</p>
+    <p class="py-4 px-6 my-auto font-semibold text-white">Payment Status</p>
+    <p class="py-4 px-6 my-auto font-semibold text-white">Report Status</p>
+    <p class="py-4 px-6 my-auto font-semibold text-white">Collection Status</p>
+    <!--  -->
+    <!--  -->
+    <!--  -->
+    <div
+      *ngFor="let record of allRecordsData.data; let i = index"
+      class="col-start-1 col-end-9 grid grid-cols-[1fr,3fr,3fr,3fr,3fr,3fr,3fr,3fr] cursor-pointer bg-slate-200"
+      (click)="onclickRecord(allRecordsData?.data?.[i])"
+    >
+      <p class="py-2 px-8 my-auto">{{ serialNumbers[i] }}</p>
+      <p class="py-2 px-8 my-auto">{{ record.Name }}</p>
+      <p class="py-2 px-8 my-auto">{{ record.Mobile }}</p>
+      <p class="py-2 px-8 my-auto">
+        {{
+          record.Registered_Date.toLowerCase()
+            | date : "EEEE, MMMM d, y, h:mm a"
+        }}
+      </p>
+      <p class="py-2 px-8 my-auto">{{ record.Tests?.length }}</p>
+      <div class="py-2 px-8 my-auto" *ngIf="record.Payment_Status">
+        <p class="rounded-md px-2 bg-green-400 inline-block">Paid</p>
+      </div>
+      <div class="py-2 px-8 my-auto" *ngIf="!record.Payment_Status">
+        <p class="rounded-md px-2 bg-red-400 inline-block">Pending</p>
+      </div>
+      <div class="py-2 px-8 my-auto" *ngIf="record.Report_Status">
+        <p class="rounded-md px-2 bg-green-400 inline-block">Completed</p>
+      </div>
+      <div class="py-2 px-8 my-auto" *ngIf="!record.Report_Status">
+        <p class="rounded-md px-2 bg-red-400 inline-block">Pending</p>
+      </div>
+      <div class="py-2 px-8 my-auto" *ngIf="record.Collection_Status">
+        <p class="rounded-md px-2 bg-green-400 inline-block">Collected</p>
+      </div>
+      <div class="py-2 px-8 my-auto" *ngIf="!record.Collection_Status">
+        <p class="rounded-md px-2 bg-red-400 inline-block">Collected</p>
+      </div>
+      <hr class="col-start-1 col-end-9 border-black" />
+    </div>
+  </div>
+  <div class="pagination flex flex-row gap-2 mx-auto">
+    <button
+      class="p-1 rounded bg-slate-200"
+      *ngFor="let page of pages; let i = index"
+      (click)="onPageClick(i + 1)"
+    >
+      {{ i + 1 }}
+    </button>
+  </div>
+  <p class="mx-auto mb-4">Page {{ page }} of {{ total_pages }}</p>
+
+  <!-- name monile tests amount pending -->
+</div>

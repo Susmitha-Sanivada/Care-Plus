@@ -1,0 +1,76 @@
+<div
+  class="w-screen h-screen flex justify-center items-center relative text-white"
+>
+  <form
+    #loginform="ngForm"
+    (ngSubmit)="onClickLogin(loginform)"
+    action=""
+    class="w-1/4 h-auto py-8 bg-customBlue rounded-3xl flex flex-col justify-center items-center gap-2"
+  >
+    <label for="username " class="w-9/12 h-4 text-md text-left"
+      >Username:</label
+    >
+    <input
+      placeholder="Susmitha"
+      required
+      ngModel
+      type="text"
+      class="w-9/12 mt-2 h-10 rounded-md text-black border border-black form-control p-2"
+      name="Username"
+      id="username"
+    />
+    <p
+      class="text-sm text-left w-9/12 m-0 p-0"
+      *ngIf="
+        loginform.touched &&
+        !loginform.controls['Username'].valid &&
+        loginform.controls['Username'].touched === true
+      "
+    >
+      Please enter a valid name
+    </p>
+    <label for="password" class="w-9/12 h-4 text-md text-left">Password:</label>
+    <input
+      placeholder="****"
+      required
+      ngModel
+      type="text"
+      class="w-9/12 mt-2 h-10 rounded-md text-black border border-black p-2 form-control"
+      name="Password"
+      id="password"
+    />
+    <p
+      *ngIf="
+        loginform.touched &&
+        !loginform.controls['Password'].valid &&
+        loginform.controls['Password'].touched === true
+      "
+      class="text-sm text-left w-9/12"
+    >
+      Please enter your password
+    </p>
+
+    <button
+      [disabled]="!loginform.valid"
+      type="submit"
+      class="w-1/4 rounded-lg mt-4 h-10 text-lg bg-white text-black hover:bg-slate-200 active:text-xl border border-black disabled:bg-gray-300 disabled:cursor-not-allowed"
+    >
+      Login
+    </button>
+
+    <div
+      #div
+      class="w-9/12 flex flex-col items-center"
+      *ngIf="employee | async as employee"
+    >
+      <p
+        class="text-sm text-center w-full mt-2 text-red-500 error-message"
+        *ngIf="employee.error === 'fail'"
+      >
+        Employee not found. Redirecting to home...
+      </p>
+    </div>
+  </form>
+</div>
+
+<!-- <p>{{ (employee | async)?.employee }}</p> -->

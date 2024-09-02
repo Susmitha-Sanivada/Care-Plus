@@ -1,0 +1,117 @@
+<div class="absolute top-16 mt-12 flex flex-col w-full mx-auto rounded-lg">
+  <div class="w-7/12 mx-auto pl-10">
+    <label for="Patient Name" class="w-9/12 h-4 text-lg text-left"
+      >Patient Name:</label
+    >
+
+    <input
+      [(ngModel)]="searchVal"
+      type="text"
+      name="Patient Name"
+      ngModel
+      class="w-2/4 mx-10 px-4 py-2 rounded-xl border border-black form-control"
+      id="Patient Name"
+    />
+    <button
+      (click)="onSearch()"
+      class="rounded-lg px-4 py-1 text-lg bg-white hover:bg-slate-200 active:text-xl border border-black"
+    >
+      Search
+    </button>
+  </div>
+  <p
+    class="my-8 w-full flex flex-col gap-6 text-center text-xl"
+    *ngIf="
+      (searchData$ | async)?.total === 0 &&
+      (searchData$ | async)?.loading === false
+    "
+  >
+    No results found, try a different name!!!
+  </p>
+  <div
+    class="mt-4 mx-auto w-11/12 flex flex-col gap-6"
+    *ngIf="
+      (searchData$ | async)?.total !== 0 &&
+      (searchData$ | async)?.loading === false
+    "
+  >
+    <h1 class="font-semibold text-2xl">Records:</h1>
+    <div
+      class="w-full rounded-xl mx-auto grid grid-cols-[1fr,3fr,3fr,3fr,3fr,3fr]"
+    >
+      <p class="py-4 px-6 my-auto bg-customBlue font-semibold text-white">
+        S.No
+      </p>
+      <p class="py-4 px-6 my-auto bg-customBlue font-semibold text-white">
+        Name
+      </p>
+      <p class="py-4 px-6 my-auto bg-customBlue font-semibold text-white">
+        Mobile
+      </p>
+      <p class="py-4 px-6 my-auto bg-customBlue font-semibold text-white">
+        Registered Date
+      </p>
+      <p class="py-4 px-8 my-auto bg-customBlue font-semibold text-white">
+        Payment Status
+      </p>
+      <p class="py-4 px-8 my-auto bg-customBlue font-semibold text-white">
+        Report Status
+      </p>
+
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <div
+        class="col-start-1 col-end-7 grid grid-cols-[1fr,3fr,3fr,3fr,3fr,3fr] cursor-pointer bg-slate-200"
+        *ngFor="let record of (searchData$ | async)?.data; let i = index"
+        (click)="onClick()"
+      >
+        <p class="py-2 px-8 my-auto">{{ i + 1 }}</p>
+        <p class="py-2 px-8 my-auto">{{ record.Name }}</p>
+        <p class="py-2 px-8 my-auto">{{ record.Mobile }}</p>
+        <p class="py-2 px-8 my-auto">
+          {{
+            record.Registered_Date.toLowerCase()
+              | date : "EEEE, MMMM d, y, h:mm a"
+          }}
+        </p>
+        <div class="py-2 px-8 my-auto">
+          <p
+            class="rounded-md px-2 bg-green-400 inline-block"
+            *ngIf="record.Payment_Status"
+          >
+            Paid
+          </p>
+          <p
+            class="rounded-md px-2 bg-red-400 inline-block"
+            *ngIf="!record.Payment_Status"
+          >
+            Pending
+          </p>
+        </div>
+        <div class="py-2 px-8 my-auto">
+          <p
+            class="rounded-md px-2 bg-green-400 inline-block"
+            *ngIf="record.Report_Status"
+          >
+            Completed
+          </p>
+          <p
+            class="rounded-md px-2 bg-red-400 inline-block"
+            *ngIf="!record.Report_Status"
+          >
+            Pending
+          </p>
+        </div>
+        <hr class="col-start-1 col-end-9 border-black" />
+      </div>
+
+      <!-- <div class="pagination flex flex-row gap-2 mx-auto">
+        <button class="p-1 bg-slate-200 rounded">1</button>
+        <button class="p-1 bg-slate-200 rounded">2</button>
+        <button class="p-1 bg-slate-200 rounded">3</button>
+      </div>
+      <p class="mx-auto">Page 1 of 3</p> -->
+    </div>
+  </div>
+</div>

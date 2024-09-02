@@ -1,0 +1,69 @@
+<div class="absolute top-16 mt-12 flex flex-col w-full mx-auto rounded-lg">
+  <div class="w-7/12 mx-auto pl-10">
+    <label for="Patient Name" class="w-9/12 h-4 text-lg text-left"
+      >Test Name:</label
+    >
+
+    <input
+      [(ngModel)]="testVal"
+      type="text"
+      name="Patient Name"
+      ngModel
+      class="w-2/4 mx-10 px-4 py-2 rounded-xl border border-black form-control"
+      id="Patient Name"
+    />
+    <button
+      (click)="onSearch()"
+      class="rounded-lg px-4 py-1 text-lg bg-white hover:bg-slate-200 active:text-xl border border-black"
+    >
+      Search
+    </button>
+  </div>
+  <p
+    class="mt-8 mb-4 w-full flex flex-col gap-6 text-xl text-center"
+    *ngIf="!(tests$ | async)?.data && (tests$ | async)?.loading === false"
+  >
+    Can't find a test with the given name. Please try another!!!
+  </p>
+  <div
+    class="mt-4 mx-auto w-11/12 flex flex-col gap-6"
+    *ngIf="(tests$ | async)?.data && (tests$ | async)?.loading === false"
+  >
+    <div class="flex justify-between">
+      <h1 class="font-semibold text-2xl">Tests:</h1>
+      <button
+        (click)="onAllTests()"
+        class="rounded-lg mr-14 px-4 py-1 text-lg bg-white hover:bg-customBlue active:text-lg border border-black"
+      >
+        All Tests
+      </button>
+    </div>
+
+    <div class="w-full mx-auto grid grid-cols-[1fr,3fr,3fr,3fr] bg-customBlue">
+      <p class="py-4 px-6 my-auto font-semibold text-white">S.No</p>
+      <p class="py-4 px-6 my-auto font-semibold text-white">Name</p>
+      <p class="py-4 px-6 my-auto font-semibold text-white">Amount</p>
+      <p class="py-4 px-6 my-auto font-semibold text-white">Duration</p>
+
+      <!--  -->
+      <!--  -->
+      <!--  -->
+      <div
+        class="col-start-1 col-end-7 grid grid-cols-[1fr,3fr,3fr,3fr] bg-slate-200"
+        *ngFor="let test of (tests$ | async)?.data; let i = index"
+      >
+        <p class="py-2 px-8 my-auto">{{ i + 1 }}</p>
+        <p class="py-2 px-8 my-auto">{{ test.TestName }}</p>
+        <p class="py-2 px-8 my-auto">{{ test.Cost }}</p>
+        <p class="py-2 px-8 my-auto">{{ test.Duration }}</p>
+        <hr class="col-start-1 col-end-9 border-black" />
+      </div>
+    </div>
+    <!-- <div class="pagination flex flex-row gap-2 mx-auto">
+      <button class="p-1 bg-slate-200 rounded">1</button>
+      <button class="p-1 bg-slate-200 rounded">2</button>
+      <button class="p-1 bg-slate-200 rounded">3</button>
+    </div>
+    <p class="mx-auto">Page 1 of 3</p> -->
+  </div>
+</div>

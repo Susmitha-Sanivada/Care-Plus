@@ -1,0 +1,52 @@
+<div class="flex absolute right-14 top-12 gap-2">
+  <p class="font-bold text-md">
+    Welcome Back, {{ (employee$ | async)?.employee?.Name }}!!!
+  </p>
+  <button class="w-6 h-6 rounded-lg mt-1" (click)="onClickHome()">
+    <div class="w-4 h-auto mx-auto" (click)="onClickProfile()">
+      <img
+        src="../../assets/user-solid-72.png"
+        alt=""
+        class="w-full h-full object-cover"
+      />
+    </div>
+  </button>
+</div>
+
+<div class="relative top-16 mt-12 w-full flex flex-col gap-6">
+  <div class="w-8/12 flex gap-8 justify-center mx-auto px-2">
+    <button
+      class="w-1/4 rounded-lg my-2 h-8 text-md bg-white hover:bg-customBlue active:text-lg border border-black"
+      (click)="onClickRecent()"
+    >
+      All Records
+    </button>
+    <button
+      (click)="onClickCreate()"
+      class="w-1/4 rounded-lg my-2 h-8 text-md bg-white hover:bg-customBlue active:text-lg border border-black"
+    >
+      Create
+    </button>
+    <button
+      (click)="onClickSearchRecords()"
+      class="w-1/4 rounded-lg my-2 h-8 text-md bg-white hover:bg-customBlue active:text-lg border border-black"
+    >
+      Search Records
+    </button>
+    <button
+      (click)="onClickSearchTests()"
+      class="w-1/4 rounded-lg my-2 h-8 text-md bg-white hover:bg-customBlue active:text-lg border border-black"
+    >
+      Search Tests
+    </button>
+    <button
+      (click)="onClickPatientDetails()"
+      class="w-1/4 rounded-lg my-2 h-8 text-md bg-white hover:bg-customBlue active:text-lg border border-black"
+    >
+      Patient Details
+    </button>
+  </div>
+  <router-outlet></router-outlet>
+</div>
+
+<!-- name monile tests amount pending -->

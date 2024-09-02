@@ -1,0 +1,94 @@
+<div
+  class="relative my-2 py-4 flex flex-col w-10/12 gap-4 mx-auto bg-customBlue rounded-lg font-bold text-white"
+>
+  <p class="ml-14 font-bold text-2xl">Patient Details:</p>
+  <div
+    class="px-auto w-8/12 mx-auto grid grid-cols-2 gap-x-24 gap-y-4 font-semibold"
+    *ngIf="details$ | async as details"
+  >
+    <div>
+      <span class="text-xl">Patient Name:</span>
+      <span class="font-normal"> {{ details.Name }}</span>
+    </div>
+    <div>
+      <span class="text-xl">Mobile Number: </span>
+      <span class="font-normal">{{ details.Mobile }}</span>
+    </div>
+    <div>
+      <span class="text-xl">Gender: </span>
+      <span class="font-normal">{{ details.Gender }}</span>
+    </div>
+    <div>
+      <span class="text-xl">Email: </span>
+      <span class="font-normal"> {{ details.Email }}</span>
+    </div>
+    <div>
+      <span class="text-xl">Registered Date: </span>
+      <span class="font-normal">
+        {{
+          details.Registered_Date.toLowerCase()
+            | date : "EEEE, MMMM d, y, h:mm a"
+        }}</span
+      >
+    </div>
+    <div>
+      <span class="text-xl">Report Status: </span>
+      <span class="font-normal" *ngIf="details.Report_Status; else pending"
+        >Completed</span
+      >
+      <ng-template #pending>
+        <span class="font-normal">Pending</span>
+      </ng-template>
+    </div>
+    <div>
+      <span class="text-xl">Duration: </span>
+      <span class="font-normal"> {{ details.Duration }}</span>
+    </div>
+    <div>
+      <span class="text-xl">Toatl Amount: </span>
+      <span class="font-normal"> {{ details.Amount }}</span>
+    </div>
+    <div class="my-auto">
+      <span class="text-xl">No. of Tests: </span>
+      <span class="font-normal">{{ details.Tests?.length }}</span>
+    </div>
+
+    <div>
+      <p class="text-xl">Tests:</p>
+      <p class="font-normal" *ngFor="let test of details.Tests">
+        {{ test.TestName }}
+      </p>
+    </div>
+    <div
+      class="flex items-center"
+      *ngIf="
+        !(details$ | async)?.Payment_Status ||
+        !(details$ | async)?.Collection_Status
+      "
+    >
+      <p class="text-xl">Mark as:</p>
+      <button
+        class="p-2 bg-slate-200 m-2 rounded-lg border border-black active:p-1 active:m-3 active:bg-slate-200 hover:bg-green-300 text-black"
+        *ngIf="!(details$ | async)?.Payment_Status"
+        (click)="onPaid()"
+      >
+        Paid
+      </button>
+      <button
+        class="p-2 bg-slate-200 m-2 rounded-lg border border-black active:p-1 active:m-3 active:bg-slate-200 hover:bg-green-200 text-black"
+        *ngIf="!(details$ | async)?.Collection_Status"
+        (click)="onCollected()"
+      >
+        Collected
+      </button>
+    </div>
+    <div *ngIf="(details$ | async)?.Payment_Status" class="my-auto">
+      <span class="text-xl">Payment Status: </span>
+      <span class="font-normal">Paid</span>
+    </div>
+    <div *ngIf="(details$ | async)?.Collection_Status" class="my-auto">
+      <span class="text-xl">Collection Status: </span>
+      <span class="font-normal">Collected</span>
+    </div>
+  </div>
+</div>

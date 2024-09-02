@@ -1,0 +1,102 @@
+[
+  {
+    "TestName": "Complete Blood Count",
+    "Cost": 500,
+    "Duration": 4
+  },
+  {
+    "TestName": "Lipid Profile",
+    "Cost": 800,
+    "Duration": 5
+  },
+  {
+    "TestName": "Thyroid Function Test",
+    "Cost": 600,
+    "Duration": 3
+  },
+  {
+    "TestName": "Liver Function Test",
+    "Cost": 700,
+    "Duration": 5
+  },
+  {
+    "TestName": "Kidney Function Test",
+    "Cost": 650,
+    "Duration": 3
+  },
+  {
+    "TestName": "Electrocardiogram (ECG)",
+    "Cost": 900,
+    "Duration": 5
+  },
+  {
+    "TestName": "X-ray",
+    "Cost": 1000,
+    "Duration": 5
+  },
+  {
+    "TestName": "Ultrasound",
+    "Cost": 1200,
+    "Duration": 5
+  },
+  {
+    "TestName": "MRI Scan",
+    "Cost": 2500,
+    "Duration": 5
+  },
+  {
+    "TestName": "CT Scan",
+    "Cost": 2000,
+    "Duration": 4
+  },
+  {
+    "TestName": "Pap Smear",
+    "Cost": 400,
+    "Duration": 4
+  },
+  {
+    "TestName": "Mammogram",
+    "Cost": 1000,
+    "Duration": 5
+  },
+  {
+    "TestName": "Colonoscopy",
+    "Cost": 1500,
+    "Duration": 5
+  },
+  {
+    "TestName": "Bone Density Test",
+    "Cost": 600,
+    "Duration": 3
+  },
+  {
+    "TestName": "Allergy Tests",
+    "Cost": 300,
+    "Duration": 2
+  },
+  {
+    "TestName": "HIV Test",
+    "Cost": 200,
+    "Duration": 2
+  },
+  {
+    "TestName": "Blood Glucose Test",
+    "Cost": 150,
+    "Duration": 2
+  },
+  {
+    "TestName": "Urine Test",
+    "Cost": 100,
+    "Duration": 2
+  },
+  {
+    "TestName": "Stool Test",
+    "Cost": 120,
+    "Duration": 4
+  },
+  {
+    "TestName": "Sputum Test",
+    "Cost": 180,
+    "Duration": 4
+  }
+]

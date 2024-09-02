@@ -1,0 +1,77 @@
+<div class="relative mt-2 flex flex-col gap-6">
+  <form
+    #myform="ngForm"
+    (click)="onSubmit(myform)"
+    class="w-6/12 bg-customBlue mx-auto rounded-3xl flex flex-col justify-center items-center gap-2 py-10"
+    action=""
+  >
+    <label for="Employee Name" class="w-9/12 h-4 text-md text-left text-white"
+      >Employee Name:</label
+    >
+    <input
+      type="text"
+      name="Employee Name"
+      ngModel
+      class="w-9/12 mt-2 h-10 rounded-xl border border-black form-control"
+      id="Employee Name"
+    />
+
+    <label for="Mobile " class="w-9/12 h-4 text-md text-left text-white"
+      >Mobile Number</label
+    >
+    <input
+      type="number"
+      ngModel
+      class="w-9/12 mt-2 h-10 rounded-xl border border-black form-control"
+      name="Mobile"
+      id="Mobile"
+    />
+    <label for="Email " class="w-9/12 h-4 text-md text-left text-white"
+      >Email:</label
+    >
+    <input
+      type="email"
+      ngModel
+      email
+      required
+      class="w-9/12 mt-2 h-10 rounded-xl border border-black form-control"
+      name="Email"
+      id="Email"
+    />
+    <label for="Gender " class="w-9/12 h-4 text-md text-left text-white"
+      >Gender:</label
+    >
+    <input
+      type="text"
+      ngModel
+      class="w-9/12 mt-2 h-10 rounded-xl border border-black form-control"
+      name="Gender"
+      id="Gender"
+    />
+
+    <label for="Department" class="w-9/12 h-4 text-md text-left text-white">
+      Department
+    </label>
+    <div class="w-9/12">
+      <select
+        ngModel
+        class="w-1/2 mt-2 h-10 rounded-xl border border-black peer form-control"
+        name="Department"
+        id="Department"
+        placeholder=" "
+      >
+        <option value="" disabled selected>Select a Department</option>
+        <option value="cbp">Accountant</option>
+        <option value="test2">Lab Tester</option>
+        <option value="test3">Sample Collector</option>
+      </select>
+    </div>
+
+    <button
+      type="submit"
+      class="w-2/12 rounded-lg px-4 py-1 mt-4 text-lg bg-white hover:bg-slate-200 active:text-xl border border-black"
+    >
+      Submit
+    </button>
+  </form>
+</div>

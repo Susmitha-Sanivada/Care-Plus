@@ -1,0 +1,25 @@
+<div class="w-screen h-screen flex justify-center items-center relative">
+  <div
+    class="w-1/4 h-1/2 bg-customBlue rounded-3xl flex flex-col justify-center items-center gap-4"
+  >
+    <div class="w-12 h-12">
+      <img
+        src="../assets/user-solid-72.png"
+        alt=""
+        class="w-full h-full object-cover"
+      />
+    </div>
+    <button
+      (click)="onClick()"
+      class="w-1/2 py-2 px-auto rounded-lg bg-slate-100 text-lg hover:bg-slate-200 active:text-xl border border-black"
+    >
+      Admin
+    </button>
+    <button
+      (click)="onClick()"
+      class="w-1/2 py-2 px-auto rounded-lg bg-slate-100 text-lg hover:bg-slate-200 active:text-xl border border-black"
+    >
+      Employee
+    </button>
+  </div>
+</div>

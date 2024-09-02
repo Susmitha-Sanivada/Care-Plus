@@ -1,0 +1,170 @@
+<div class="relative mt-2 flex flex-col gap-6">
+  <form
+    #myform="ngForm"
+    (ngSubmit)="onSubmit(myform)"
+    class="w-6/12 bg-customBlue mx-auto rounded-2xl flex flex-col justify-center items-center gap-2 py-14"
+    action=""
+  >
+    <p
+      class="w-9/12 text-xl font-bold text-center text-white"
+      *ngIf="(createdData$ | async)?.error"
+    >
+      {{ msg }}
+    </p>
+    <p
+      class="w-9/12 text-xl font-bold text-center text-white"
+      *ngIf="!(createdData$ | async)?.error"
+    >
+      {{ msg }}
+    </p>
+    <label
+      for="Patient Name"
+      class="w-9/12 h-4 mt-2 text-md text-left text-white"
+      >Patient Name:</label
+    >
+    <input
+      required
+      placeholder="Alice"
+      type="text"
+      name="Name"
+      ngModel
+      class="w-9/12 mt-2 pl-2 h-10 rounded-lg border border-black form-control"
+      id="Patient Name"
+    />
+
+    <label for="Mobile " class="w-9/12 h-4 text-md text-left text-white"
+      >Mobile Number</label
+    >
+    <input
+      placeholder="8283819103"
+      required
+      type="number"
+      ngModel
+      class="w-9/12 mt-2 pl-2 h-10 rounded-lg border border-black form-control"
+      name="Mobile"
+      id="Mobile"
+    />
+    <label for="Email " class="w-9/12 h-4 text-md text-left text-white"
+      >Email:</label
+    >
+    <input
+      placeholder="ex@gmail.com"
+      type="email"
+      ngModel
+      email
+      required
+      class="w-9/12 mt-2 pl-2 h-10 rounded-lg border border-black form-control"
+      name="Email"
+      id="Email"
+    />
+    <label for="Gender " class="w-9/12 h-4 text-md text-left text-white"
+      >Gender:</label
+    >
+    <input
+      placeholder="Female"
+      required
+      type="text"
+      ngModel
+      class="w-9/12 mt-2 pl-2 h-10 rounded-lg border border-black form-control"
+      name="Gender"
+      id="Gender"
+    />
+
+    <label for="Tests" class="w-9/12 h-4 text-md text-left text-white">
+      Tests:
+    </label>
+    <div class="w-9/12">
+      <select
+        required
+        [(ngModel)]="emptyVal"
+        ngModel
+        *ngIf="testsData$ | async as testsData"
+        (change)="onAdd(myform, $event)"
+        class="w-1/2 mt-2 pl-1 h-10 rounded-lg border border-black peer form-control"
+        name="Tests"
+        id="Tests"
+        placeholder=" "
+      >
+        <option value="" disabled selected>Select a test</option>
+        <option
+          *ngFor="let test of testsData.data; let i = index"
+          [value]="test.TestName"
+        >
+          {{ test.TestName }}
+        </option>
+      </select>
+    </div>
+
+    <div
+      class="mt-4 w-9/12 grid grid-cols-[1fr,1fr,1fr] gap-4"
+      *ngIf="tests.length > 0"
+    >
+      <h2 class="text-left text-white text-center col-span-3">
+        Selected Tests:
+      </h2>
+      <div class="grid col-start-1 col-end-2">
+        <ul *ngFor="let test of tests" class="text-left text-white text-center">
+          {{
+            test.TestName
+          }}
+        </ul>
+      </div>
+      <div class="grid col-start-2 col-end-3">
+        <ul *ngFor="let test of tests" class="text-left text-white text-center">
+          {{
+            test.Cost
+          }}
+          INR
+        </ul>
+      </div>
+      <div class="grid col-start-3 col-end-4">
+        <ul *ngFor="let test of tests" class="text-left text-white text-center">
+          {{
+            test.Duration
+          }}
+          Days
+        </ul>
+      </div>
+
+      <hr class="col-span-3" />
+      <p class="text-left text-white text-center font-bold text-lg col-span-2">
+        Total Amount
+      </p>
+      <p class="text-left text-white text-center">{{ costSum }} INR</p>
+      <p class="text-left text-white text-center font-bold text-lg col-span-2">
+        Total Duration
+      </p>
+      <p class="text-left text-white text-center">{{ duration }} Days</p>
+      <hr class="col-span-3" />
+    </div>
+
+    <label class="w-9/12 h-4 text-md text-left text-white"
+      >Payment Status:
+      <input
+        type="radio"
+        required
+        [value]="booleanTrue"
+        class="ml-6"
+        ngModel
+        name="Payment_Status"
+      />Paid
+      <input
+        required
+        type="radio"
+        [value]="booleanFalse"
+        class="ml-6"
+        ngModel
+        name="Payment_Status"
+      />
+      Not Paid
+    </label>
+
+    <button
+      [disabled]="!myform.valid"
+      type="submit"
+      class="w-2/12 rounded-lg px-4 py-1 mt-12 text-lg bg-white hover:bg-slate-200 active:text-xl border border-black disabled:bg-gray-300 disabled:cursor-not-allowed"
+    >
+      Submit
+    </button>
+  </form>
+</div>
